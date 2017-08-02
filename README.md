@@ -39,7 +39,7 @@ window.cordova.plugins.zbtprinter.print(address, "^XA^FO20,20^A0N,25,25^FDThis i
 ## Install Cordova
 
 ```
-cordova plugin add https://github.com/diegorquera/zbtprinter.git
+cordova plugin add cordova-plugin-zebra-printer
 ```
 
 ## ZPL - Zebra Programming Language
