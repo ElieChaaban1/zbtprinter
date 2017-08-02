@@ -5,7 +5,7 @@ This is a fork of https://github.com/michael79bxl/zbtprinter.git
 
 Update version ZSDK_ANDROID_API.jar and permissions.
 
-##Usage
+## Usage
 You can find Zebra printer using:
 
 ```
@@ -36,11 +36,11 @@ window.cordova.plugins.zbtprinter.print(address, "^XA^FO20,20^A0N,25,25^FDThis i
 );
 ```
 
-##Install
-###Cordova
+## Install Cordova
 
 ```
 cordova plugin add https://github.com/diegorquera/zbtprinter.git
 ```
-##ZPL - Zebra Programming Language
+
+## ZPL - Zebra Programming Language
 For more information about ZPL please see the  [PDF Official Manual](https://support.zebra.com/cpws/docs/zpl/zpl_manual.pdf)
