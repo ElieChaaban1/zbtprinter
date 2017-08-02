@@ -2,7 +2,8 @@
 A Cordova/Phonegap driver for Zebra bluetooth printers
 
 This is a fork of https://github.com/michael79bxl/zbtprinter.git
-Update version ZSDK_ANDROID_API.jar and permission.
+
+Update version ZSDK_ANDROID_API.jar and permissions.
 
 ##Usage
 You can find Zebra printer using:
@@ -39,7 +40,7 @@ window.cordova.plugins.zbtprinter.print(address, "^XA^FO20,20^A0N,25,25^FDThis i
 ###Cordova
 
 ```
-cordova plugin add https://github.com/michael79bxl/zbtprinter.git
+cordova plugin add https://github.com/diegorquera/zbtprinter.git
 ```
 ##ZPL - Zebra Programming Language
 For more information about ZPL please see the  [PDF Official Manual](https://support.zebra.com/cpws/docs/zpl/zpl_manual.pdf)
