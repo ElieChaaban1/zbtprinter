@@ -1,4 +1,4 @@
-package com.github.michael79bxl.zbtprinter;
+package com.github.diegorquera.zbtprinter;
 
 import java.io.IOException;
 
@@ -27,6 +27,16 @@ public class ZebraBluetoothPrinter extends CordovaPlugin {
                 String mac = args.getString(0);
                 String msg = args.getString(1);
                 sendData(callbackContext, mac, msg);
+            } catch (Exception e) {
+                Log.e(LOG_TAG, e.getMessage());
+                e.printStackTrace();
+            }
+            return true;
+        }
+        if (action.equals("printLabel")) {
+            try {
+                String mac = args.getString(0);
+                printLabel(callbackContext, mac);
             } catch (Exception e) {
                 Log.e(LOG_TAG, e.getMessage());
                 e.printStackTrace();
@@ -101,12 +111,49 @@ public class ZebraBluetoothPrinter extends CordovaPlugin {
                     // Open the connection - physical connection is established here.
                     thePrinterConn.open();
 
-                    // Print label sample
-                    // ZebraPrinter zPrinter = ZebraPrinterFactory.getInstance(thePrinterConn);
-                    // zPrinter.printConfigurationLabel();
-
                     SGD.SET("device.languages", "zpl", thePrinterConn);
                     thePrinterConn.write(msg.getBytes());
+
+                    // Close the insecure connection to release resources.
+                    thePrinterConn.close();
+
+                    Looper.myLooper().quit();
+                    callbackContext.success("Done");
+
+                    // } else {
+                        // callbackContext.error("Printer is not ready");
+                    // }
+                } catch (Exception e) {
+                    // Handle communications error here.
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        }).start();
+    }
+
+    /*
+     * This will send data to be printed by the bluetooth printer
+     */
+    void printLabel(final CallbackContext callbackContext, final String mac) throws IOException {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    // Instantiate insecure connection for given Bluetooth MAC Address.
+                    Connection thePrinterConn = new BluetoothConnectionInsecure(mac);
+
+                    // if (isPrinterReady(thePrinterConn)) {
+
+                    // Initialize
+                    Looper.prepare();
+
+                    // Open the connection - physical connection is established here.
+                    thePrinterConn.open();
+
+                    // Print label sample
+                    ZebraPrinter zPrinter = ZebraPrinterFactory.getInstance(thePrinterConn);
+                    zPrinter.printConfigurationLabel();
 
                     // Close the insecure connection to release resources.
                     thePrinterConn.close();
